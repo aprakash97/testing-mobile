@@ -3,6 +3,7 @@ package com.example.docpatient;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -61,7 +62,15 @@ public class ViewActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
                 String aa = titles.get(position).toString();
-                Toast.makeText(getApplicationContext(), aa, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), aa, Toast.LENGTH_LONG).show();
+
+                Student stu = stud.get(position);
+                Intent i = new Intent(getApplicationContext(), EditActivity.class);
+                    i.putExtra("id", stu.id);
+                    i.putExtra("name", stu.name);
+                    i.putExtra("course", stu.course);
+                    i.putExtra("fee", stu.fee);
+                    startActivity(i);
             }
         });
     }
