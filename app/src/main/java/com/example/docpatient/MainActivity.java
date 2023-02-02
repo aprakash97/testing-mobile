@@ -3,6 +3,7 @@ package com.example.docpatient;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
@@ -34,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),  ViewActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void insert(){
