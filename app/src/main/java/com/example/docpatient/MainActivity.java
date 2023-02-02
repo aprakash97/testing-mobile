@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 insert();
+
             }
         });
 
@@ -53,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
             SQLiteDatabase db = openOrCreateDatabase("docpatDB", Context.MODE_PRIVATE,null);
             db.execSQL("CREATE TABLE IF NOT EXISTS records(id INTEGER PRIMARY KEY AUTOINCREMENT,name VARCHAR,course VARCHAR,fee VARCHAR)");
 
+//            if(name.equals("") || course.equals("") || fee.equals("")){
+//                Toast.makeText(this,"Fill All Details",Toast.LENGTH_LONG).show();
+//                return;
+//            }
+
             String sql = "insert into records(name,course,fee) values(?,?,?)";
             SQLiteStatement statement = db.compileStatement(sql);
             statement.bindString(1,name);
@@ -65,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(this,"Record TABLE DELETED",Toast.LENGTH_LONG).show();
 
             Toast.makeText(this,"Record Added",Toast.LENGTH_LONG).show();
+            ed1.setText("");
+            ed2.setText("");
+            ed3.setText("");
+            ed1.requestFocus();
 
         }catch (Exception e){
             System.out.println(e);
