@@ -45,7 +45,17 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 update();
+                Intent i = new Intent(getApplicationContext(), ViewActivity.class);
+                startActivity(i);
+            }
+        });
 
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                delete();
+                Intent i = new Intent(getApplicationContext(), ViewActivity.class);
+                startActivity(i);
             }
         });
 
@@ -85,6 +95,29 @@ public class EditActivity extends AppCompatActivity {
 //            ed2.setText("");
 //            ed3.setText("");
 //            ed1.requestFocus();
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void delete(){
+        try{
+            String id = ed1.getText().toString();
+
+            SQLiteDatabase db = openOrCreateDatabase("docpatDB", Context.MODE_PRIVATE,null);
+
+            String sql = "DELETE FROM records WHERE id=?";
+
+            SQLiteStatement statement = db.compileStatement(sql);
+            statement.bindString(1,id);
+//            statement.bindString(2,course);
+//            statement.bindString(3,fee);
+//            statement.bindString(4,id);
+            statement.execute();
+
+            Toast.makeText(this,"Record Deleted",Toast.LENGTH_LONG).show();
+
 
         }catch (Exception e){
             System.out.println(e);
